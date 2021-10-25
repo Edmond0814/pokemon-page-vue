@@ -4,15 +4,20 @@ import SpecificPokemonPage from '../view/SpecificPokemonPage.vue'
 
 export default [
   {
+    path: '/',
+    redirect:'/Home',
+  },
+  {
     path: '/Home',
     component: Home,
   },
   {
-    path: '/pokemonpage',
+    path: '/pokemon',
     component: PokemonPage,
   },
   {
-    path: '/pokemonpage/specificpokemonpage',
+    path: '/pokemon/:id',
+    name:'specificpokemonpage',
     component: SpecificPokemonPage,
   }
 ]
