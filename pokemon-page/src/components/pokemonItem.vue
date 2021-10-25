@@ -2,7 +2,7 @@
     <div @click="$emit('clicked',pokemon.ID)">
         <router-link :to="'/pokemon/' + pokemon.ID">
             <img :src="img" alt="">
-            <p> #{{pokemon.ID}} </p>
+            <p> #{{this.ID}} </p>
             <p> {{pokemon.name}} </p>
         </router-link>
     </div>
@@ -16,12 +16,13 @@ export default {
     },
     data(){
         return{
-            img:''
+            img:'',
+            ID:''
         }
     },
     created(){
-        let ID = ('00'+this.pokemon['ID']).slice(-3)
-        const imgLink = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${ID}.png`
+        this.ID = ('00'+this.pokemon['ID']).slice(-3)
+        const imgLink = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${this.ID}.png`
         this.img= imgLink
     }
 }
@@ -41,5 +42,8 @@ div{
 div:hover{
     transform: scale(1.1);
     cursor: pointer;
+}
+a{
+    text-decoration: none;
 }
 </style>

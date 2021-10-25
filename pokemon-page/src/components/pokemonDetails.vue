@@ -1,10 +1,10 @@
 <template>
     <div class="pokemon">
         <div class="idname">
-            <div class="id">#{{ID}}</div>
+            <div class="id">#{{pokemon.IDs}}</div>
             <div class="name">{{pokemon.name}}</div>
         </div>
-        <img :src="img" alt="">
+        <img :src="pokemon.imgURL" alt="">
         <div class="info">
             <div class="size">
                 <div class="weight">{{pokemon.weight}}KG</div>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="movesbox">
                     <p>Moves</p>
-                    <div :key="Move.url" v-for="Move in pokemon.moves.slice(0,4)" class="move">
+                    <div :key="Move.url" v-for="Move in pokemon.moves" class="move">
                         <p class="move"> {{Move['move']['name']}} </p>
                     </div>
                 </div>
@@ -40,9 +40,7 @@ export default {
         }
     },
     created(){
-        this.ID = ('00'+this.pokemon['id']).slice(-3)
-        const imgLink = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${this.ID}.png`;
-        this.img= imgLink
+        
     }
 }
 </script>
@@ -88,7 +86,9 @@ export default {
 }
 .idname{
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .skills{
@@ -108,6 +108,6 @@ export default {
     flex-direction: column;
     align-items: center;
     font-size: 25px;
-    padding-top: 75px;
+    padding-top: 100px;
 }
 </style>

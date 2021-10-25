@@ -27,11 +27,20 @@ export default {
                 console.error(error);
             }
         },
-
+        addImgURL(){
+            this.pokemon.IDs = ('00'+this.pokemon['id']).slice(-3)
+            const imgLink = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${this.pokemon.IDs}.png`;
+            this.pokemon['imgURL']=imgLink
+        },
+        removePokemonMoves(){
+            this.pokemon.moves = this.pokemon.moves.slice(0,4)
+        },
         async getPokemonDetails (){
-            let {Name,id, abilities,moves,height,weight} = await this.fetchPokemonsDetails()
-            this.pokemon ={Name,id, abilities,moves,height,weight};
-        }
+            let {name,id, abilities,moves,height,weight} = await this.fetchPokemonsDetails()
+            this.pokemon ={name,id, abilities,moves,height,weight};
+            this.removePokemonMoves()
+            this.addImgURL()
+        },
     },
     async created(){
         await this.getPokemonDetails()

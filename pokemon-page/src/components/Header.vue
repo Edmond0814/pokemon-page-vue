@@ -40,6 +40,7 @@ a{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 10vh;
     padding: 0 25px;
     color:wheat;
