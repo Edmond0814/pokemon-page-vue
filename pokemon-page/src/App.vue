@@ -6,18 +6,18 @@
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import Header from "./components/Header.vue";
 
 export default {
-  name: 'App',
-  components:{
+  name: "App",
+  components: {
     Header,
-  }
-}
+  },
+};
 </script>
 
 <style>
-*{
+* {
   margin: 0;
   padding: 0;
 }

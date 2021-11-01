@@ -1,49 +1,49 @@
 <template>
-    <div @click="$emit('clicked',pokemon.ID)">
-        <router-link :to="'/pokemon/' + pokemon.ID">
-            <img :src="img" alt="">
-            <p> #{{this.ID}} </p>
-            <p> {{pokemon.name}} </p>
-        </router-link>
-    </div>
+  <div @click="$emit('clicked', pokemon.ID)">
+    <router-link :to="'/pokemon/' + pokemon.ID">
+      <img :src="img" alt="" />
+      <p>#{{ this.ID }}</p>
+      <p>{{ pokemon.name }}</p>
+    </router-link>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'pokemonItem',
-    props:{
-        pokemon: Object,
-    },
-    data(){
-        return{
-            img:'',
-            ID:''
-        }
-    },
-    created(){
-        this.ID = ('00'+this.pokemon['ID']).slice(-3)
-        const imgLink = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${this.ID}.png`
-        this.img= imgLink
-    }
-}
+  name: "pokemonItem",
+  props: {
+    pokemon: Object,
+  },
+  data() {
+    return {
+      img: "",
+      ID: "",
+    };
+  },
+  created() {
+    this.ID = ("00" + this.pokemon["ID"]).slice(-3);
+    const imgLink = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${this.ID}.png`;
+    this.img = imgLink;
+  },
+};
 </script>
 
 <style scoped>
-div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: whitesmoke;
-    border: 2px solid black;
-    margin: 1rem;
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: whitesmoke;
+  border: 2px solid black;
+  margin: 1rem;
 }
 
-div:hover{
-    transform: scale(1.1);
-    cursor: pointer;
+div:hover {
+  transform: scale(1.1);
+  cursor: pointer;
 }
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
 </style>
