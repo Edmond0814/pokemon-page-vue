@@ -1,6 +1,6 @@
 <template>
   <div>
-    <pokemonListItem :pokemons="Pokemons.results" />
+    <pokemonListItem :pokemons="pokemons" />
   </div>
 </template>
 
@@ -49,7 +49,7 @@ export default {
     await this.getPokemonInfo();
   },
   mounted(){
-    this.$store.dispatch("fetchPokemons");
+    this.$store.dispatch("getPokemonsDetails");
   },
 };
 </script>

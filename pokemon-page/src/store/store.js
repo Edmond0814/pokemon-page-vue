@@ -6,19 +6,57 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state:{
-    pokemons:[],
+    pokemonsDetails:[],
   },
 
   actions:{
-    async fetchPokemons({commit}){
-      const response = await axios.get("api/pokemon")
-      commit('setPokemons',response.data)
+    async getPokemonsDetails({dispatch}){
+      let pokemonsURL = await dispatch("fetchPokemonsURL")
+      console.log(pokemonsURL);
+
+      // for (let pokemonURL in pokemonsURL){
+      //   let response = await axios.get(pokemonURL)
+      //   commit('setPokemonDetails',response.data)
+      // }
+
+      pokemonsURL.forEach(pokemonURL=>{
+        dispatch("fetchPokemonsDetails",pokemonURL)
+      })
+    },
+    async fetchPokemonsURL(){
+      const response = await axios.get("api/pokemon?limit=30")
+      let pokemons = response.data
+      return pokemons.results.map(pokemon=>pokemon.url)
+    },
+    async fetchPokemonsDetails({commit},pokemonURL){
+      const response = await axios.get(pokemonURL)
+      commit('setPokemonDetails',response.data)
     },
   },
 
   mutations:{
-    setPokemons(state,pokemons){
-      state.pokemons = pokemons
+    setPokemonDetails(state,pokemonDetails){
+      let {
+            name,
+            id,
+            abilities,
+            moves,
+            height,
+            weight,
+          } = pokemonDetails;
+      moves = moves.slice(0,4);
+      let pokemon = {
+                      name,
+                      id,
+                      abilities,
+                      moves,
+                      height,
+                      weight,
+                    }
+      state.pokemonsDetails.push(pokemon)
     },
+    threeDigitId(state){
+      state["threeDigitId"]= ("00" + state.pokemons["ID"]).slice(-3)
+    }
   },
 })
