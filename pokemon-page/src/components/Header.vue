@@ -35,6 +35,7 @@ span {
 .nav-bar {
   position: fixed;
   width: 100%;
+  z-index: 10001;
 }
 
 ul {

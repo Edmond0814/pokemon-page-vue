@@ -17,9 +17,6 @@ export default {
   components: {
     PokemonItem,
   },
-  created() {
-    console.log("testing");
-  },
 };
 </script>
 
